@@ -1,2 +1,2 @@
 # CSE3151
-IDB
+Introduction to Databases
