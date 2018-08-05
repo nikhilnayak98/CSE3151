@@ -1,7 +1,7 @@
 /*
-Name : Nikhil Ranjan Nayak 
-Regd No : 1641012040
-Desc : Assignment 3
+Name: Nikhil Ranjan Nayak
+Regd No: 1641012040
+Desc: Assignment 3
 */
 
 a) select course_id, title, credits from COURSE where dept_name='Biology' or dept_name='Physics' or dept_name='Finance' or dept_name='Music';
