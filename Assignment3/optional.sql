@@ -1,8 +1,14 @@
-create table CLIENT_MASTER(clientno number, name varchar(30), city varchar(20), pincode number, state varchar(30), baldue number);
+/*
+Name: Nikhil Ranjan Nayak
+Regd No: 1641012040
+Desc: Assignment 3 Optional
+*/
 
+/* Schema */
+create table CLIENT_MASTER(clientno number, name varchar(30), city varchar(20), pincode number, state varchar(30), baldue number);
 create table PRODUCT_MASTER(productno varchar(10), description varchar(30), profit_percent decimal, unit_measure varchar(30), qty_on_hand number, reorder_lvlnumber number, sell_price number, cost_price_number number);
 
-
+/* Data */
 insert all
 	into CLIENT_MASTER (clientno, name, city, pincode, state, baldue) values(0001, 'Ivan', 'Bombay', 400054, 'Maharashtra', 15000)
 	into CLIENT_MASTER (clientno, name, city, pincode, state, baldue) values(0002, 'Vandana', 'Madras', 780001, 'Tamil Nadu', 0)
@@ -24,5 +30,3 @@ insert all
 	into PRODUCT_MASTER(productno, description, profit_percent, unit_measure, qty_on_hand, reorder_lvlnumber, sell_price, cost_price_number) values('P07975', '1.44 Drive', 5, 'Piece', 10, 3, 1050, 1000)
 	into PRODUCT_MASTER(productno, description, profit_percent, unit_measure, qty_on_hand, reorder_lvlnumber, sell_price, cost_price_number) values('P08865', '1.22 Drive', 5, 'Piece', 2, 3, 1000, 920)
 select *from dual;
-
-
