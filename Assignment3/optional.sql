@@ -30,3 +30,23 @@ insert all
 	into PRODUCT_MASTER(productno, description, profit_percent, unit_measure, qty_on_hand, reorder_lvlnumber, sell_price, cost_price_number) values('P07975', '1.44 Drive', 5, 'Piece', 10, 3, 1050, 1000)
 	into PRODUCT_MASTER(productno, description, profit_percent, unit_measure, qty_on_hand, reorder_lvlnumber, sell_price, cost_price_number) values('P08865', '1.22 Drive', 5, 'Piece', 2, 3, 1000, 920)
 select *from dual;
+
+select name from client_master;
+
+select name, city from client_master;
+
+select productno as products from product_master;
+
+select name from client_master where city = 'Bombay';
+
+select *from client_master where clientno = 0001 or clientno = 0002;
+
+select productno as products from product_master where description = '1.44 Drive' or description = '1.22 Drive';
+
+select *from product_master where sell_price>5000;
+
+select name from client_master where city = 'Bombay' or city = 'Delhi' or city = 'Kolkata';
+
+select *from product_master where sell_price>2000 and sell_price<5000;
+
+select name, city, state from client_master where state<>'Maharashtra';
