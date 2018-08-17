@@ -50,3 +50,33 @@ select name from client_master where city = 'Bombay' or city = 'Delhi' or city =
 select *from product_master where sell_price>2000 and sell_price<5000;
 
 select name, city, state from client_master where state<>'Maharashtra';
+
+create table CLIENT_BAL AS (select clientno, name, baldue from client_master where city = 'Bombay');
+
+update product_master set sell_price = 1150 where description = '1.44 floppies';
+
+delete from client_master where clientno = 0001;
+
+update client_master set state = 'Bombay' where clientno = 0005;
+
+update client_master set baldue = 1000 where clientno = 0001;
+
+select *from product_master where sell_price>1500;
+
+update product_master set sell_price = sell_price + (0.15 * sell_price);
+
+select name from client_master where state LIKE '_a%';
+
+select name from client_master where name LIKE '_a%';
+
+select *from product_master order by description;
+
+select COUNT(*) from product_master;
+
+select AVG(sell_price) from product_master;
+
+select MIN(sell_price) from product_master;
+
+select MIN(sell_price) as Min_Price, MAX(sell_price) as Max_Price from product_master;
+
+select COUNT(*) from product_master where sell_price>=1500;
