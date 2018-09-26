@@ -17,12 +17,25 @@ i.
 
   select name from CUSTOMER where cust_no not in (select cust_no from LOAN);
 
-4) select account_no, balance from ACCOUNT where account_no in (select account_no from DEPOSITOR where cust_no = 'C0010');
+4) select account_no, balance from ACCOUNT natural join DEPOSITOR where DEPOSITOR.cust_no = 'C0010';
 
-5) select city from CUSTOMER where cust_no in (select cust_no from CUSTOMER where name = 'ASLESHA TIWARI');
+  select account_no, balance from ACCOUNT where account_no in (select account_no from DEPOSITOR where cust_no = 'C0010');
 
-6) select type, branch_code from ACCOUNT where account_no in (select account_no from DEPOSITOR where cust_no = 'C0002');
+5) select distinct CUSTOMER.city from CUSTOMER self join CUSTOMER on CUSTOMER.name = 'ASLESHA TIWARI';
 
-7) select A.account_no, A.balance from ACCOUNT A where A.type = 'SB';
+  select city from CUSTOMER where cust_no in (select cust_no from CUSTOMER where name = 'ASLESHA TIWARI');
+
+6) select type, branch_code from ACCOUNT natural join DEPOSITOR where DEPOSITOR.cust_no = 'C0002';
+
+  select type, branch_code from ACCOUNT where account_no in (select account_no from DEPOSITOR where cust_no = 'C0002');
+
+7) select account_no, balance from ACCOUNT where type = 'SB';
 
 8) select *from INSTALLMENT where loan_no in (select loan_no from LOAN where cust_no = 'C0001');
+
+  select *from INSTALLMENT natural join LOAN where LOAN.cust_no = 'C0001';
+
+P.S. select *from (select *from ACCOUNT order by balance desc) where ROWNUM = 1;
+
+ii.
+a) select name, phone_no from CUSTOMER natural join ACCOUNT where ACCOUNT.balance > 100000;
