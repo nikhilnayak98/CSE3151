@@ -49,3 +49,9 @@ c) select phone_no from CUSTOMER, DEPOSITOR, ACCOUNT, BRANCH where
 CUSTOMER.cust_no = DEPOSITOR.cust_no AND DEPOSITOR.account_no = ACCOUNT.account_no AND ACCOUNT.branch_code = BRANCH.branch_code AND BRANCH.branch_name = 'SALTLAKE BRANCH';
 
 d) select distinct name from CUSTOMER, LOAN, INSTALLMENT where CUSTOMER.cust_no = LOAN.cust_no AND LOAN.loan_no = INSTALLMENT.loan_no AND INSTALLMENT.inst_amount = 500000;
+
+e) select distinct name from CUSTOMER, DEPOSITOR, ACCOUNT where CUSTOMER.cust_no = DEPOSITOR.cust_no AND DEPOSITOR.account_no = ACCOUNT.account_no AND ACCOUNT.type != 'SB';
+
+f) select ACCOUNT.type, sum(ACCOUNT.balance) from ACCOUNT, DEPOSITOR, CUSTOMER where DEPOSITOR.account_no = ACCOUNT.account_no AND DEPOSITOR.cust_no = CUSTOMER.cust_no AND CUSTOMER.name= 'SWAROOP RAY' group by ACCOUNT.type;
+
+g) select I.INST_NO,I.INST_AMOUNT from CUSTOMER C, LOAN L,INSTALLMENT I where C.cust_no = L.cust_no AND L.loan_no = I.loan_no AND C.name = 'RAJ ANAND SINGH';
