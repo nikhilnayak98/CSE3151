@@ -39,3 +39,13 @@ P.S. select *from (select *from ACCOUNT order by balance desc) where ROWNUM = 1;
 
 ii.
 a) select name, phone_no from CUSTOMER natural join ACCOUNT where ACCOUNT.balance > 100000;
+
+b) select loan_no from LOAN natural join BRANCH where BRANCH.branch_city = 'MUMBAI';
+
+  --Alternate Method--
+  select LOAN.loan_no from LOAN, BRANCH where LOAN.branch_code = BRANCH.branch_code AND BRANCH.branch_city = 'MUMBAI';
+
+c) select phone_no from CUSTOMER, DEPOSITOR, ACCOUNT, BRANCH where
+CUSTOMER.cust_no = DEPOSITOR.cust_no AND DEPOSITOR.account_no = ACCOUNT.account_no AND ACCOUNT.branch_code = BRANCH.branch_code AND BRANCH.branch_name = 'SALTLAKE BRANCH';
+
+d) select distinct name from CUSTOMER, LOAN, INSTALLMENT where CUSTOMER.cust_no = LOAN.cust_no AND LOAN.loan_no = INSTALLMENT.loan_no AND INSTALLMENT.inst_amount = 500000;
