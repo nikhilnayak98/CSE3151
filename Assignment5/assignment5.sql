@@ -54,6 +54,8 @@ e) select distinct name from CUSTOMER, DEPOSITOR, ACCOUNT where CUSTOMER.cust_no
 
 f) select ACCOUNT.type, sum(ACCOUNT.balance) from ACCOUNT, DEPOSITOR, CUSTOMER where DEPOSITOR.account_no = ACCOUNT.account_no AND DEPOSITOR.cust_no = CUSTOMER.cust_no AND CUSTOMER.name= 'SWAROOP RAY' group by ACCOUNT.type;
 
-g) select I.INST_NO, I.INST_AMOUNT from CUSTOMER C, LOAN L, INSTALLMENT I where C.cust_no = L.cust_no AND L.loan_no = I.loan_no AND C.name = 'RAJ ANAND SINGH';
+g) select I.inst_no, I.inst_amount from CUSTOMER C, LOAN L, INSTALLMENT I where C.cust_no = L.cust_no AND L.loan_no = I.loan_no AND C.name = 'RAJ ANAND SINGH';
 
-h)
+h) select B.branch_name, B.branch_city from BRANCH B, CUSTOMER C, DEPOSITOR D, ACCOUNT A where C.cust_no = D.cust_no AND D.account_no = A.account_no AND A.branch_code = B.branch_code AND C.name = 'ABHIJIT MISHRA';
+
+i) 
