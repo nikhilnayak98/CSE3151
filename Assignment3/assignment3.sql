@@ -51,3 +51,4 @@ v) select SUBSTR('Nikhil Nayak', 2, 5) from dual;
 w) select LENGTH('Siksha O Anusandhan') from dual;
 
 x) alter table INSTRUCTOR add DOB date;
+   update INSTRUCTOR set dob = TO_DATE('01-JAN-1991') - floor(dbms_random.value * 900);
