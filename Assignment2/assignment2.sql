@@ -37,7 +37,7 @@ k) select name, dept_name, salary from INSTRUCTOR where name like 'c%';
 
 l) select name, dept_name, salary from INSTRUCTOR where name like '%i_';
 
-m) select *from COURSE where title like '%c%';
+m) select *from COURSE where title like '%e%';
 
 
 2.
