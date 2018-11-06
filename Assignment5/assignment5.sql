@@ -38,24 +38,36 @@ i.
 P.S. select *from (select *from ACCOUNT order by balance desc) where ROWNUM = 1;
 
 ii.
-a) select name, phone_no from CUSTOMER natural join ACCOUNT where ACCOUNT.balance > 100000;
+a) select name, phone_no from CUSTOMER natural join DEPOSITOR, ACCOUNT where DEPOSITOR.account_no = ACCOUNT.account_no and ACCOUNT.balance > 100000;
 
 b) select loan_no from LOAN natural join BRANCH where BRANCH.branch_city = 'MUMBAI';
 
   --Alternate Method--
   select LOAN.loan_no from LOAN, BRANCH where LOAN.branch_code = BRANCH.branch_code AND BRANCH.branch_city = 'MUMBAI';
 
-c) select phone_no from CUSTOMER, DEPOSITOR, ACCOUNT, BRANCH where
-CUSTOMER.cust_no = DEPOSITOR.cust_no AND DEPOSITOR.account_no = ACCOUNT.account_no AND ACCOUNT.branch_code = BRANCH.branch_code AND BRANCH.branch_name = 'SALTLAKE BRANCH';
+c) select phone_no from CUSTOMER natural join DEPOSITOR, ACCOUNT, BRANCH where DEPOSITOR.account_no = ACCOUNT.account_no and ACCOUNT.branch_code = BRANCH.branch_code and BRANCH.branch_name = 'SALTLAKE BRANCH';
 
-d) select distinct name from CUSTOMER, LOAN, INSTALLMENT where CUSTOMER.cust_no = LOAN.cust_no AND LOAN.loan_no = INSTALLMENT.loan_no AND INSTALLMENT.inst_amount = 500000;
+  select phone_no from CUSTOMER, DEPOSITOR, ACCOUNT, BRANCH where CUSTOMER.cust_no = DEPOSITOR.cust_no AND DEPOSITOR.account_no = ACCOUNT.account_no AND ACCOUNT.branch_code = BRANCH.branch_code AND BRANCH.branch_name = 'SALTLAKE BRANCH';
 
-e) select distinct name from CUSTOMER, DEPOSITOR, ACCOUNT where CUSTOMER.cust_no = DEPOSITOR.cust_no AND DEPOSITOR.account_no = ACCOUNT.account_no AND ACCOUNT.type != 'SB';
+d) select distinct name from CUSTOMER natural join LOAN, INSTALLMENT where LOAN.loan_no = INSTALLMENT.loan_no and INSTALLMENT.inst_amount = 500000;
+  
+  select distinct name from CUSTOMER, LOAN, INSTALLMENT where CUSTOMER.cust_no = LOAN.cust_no AND LOAN.loan_no = INSTALLMENT.loan_no AND INSTALLMENT.inst_amount = 500000;
 
-f) select ACCOUNT.type, sum(ACCOUNT.balance) from ACCOUNT, DEPOSITOR, CUSTOMER where DEPOSITOR.account_no = ACCOUNT.account_no AND DEPOSITOR.cust_no = CUSTOMER.cust_no AND CUSTOMER.name= 'SWAROOP RAY' group by ACCOUNT.type;
+e) select distinct name from CUSTOMER natural join DEPOSITOR, ACCOUNT where DEPOSITOR.account_no = ACCOUNT.account_no and ACCOUNT.type<>'SB';
 
-g) select I.inst_no, I.inst_amount from CUSTOMER C, LOAN L, INSTALLMENT I where C.cust_no = L.cust_no AND L.loan_no = I.loan_no AND C.name = 'RAJ ANAND SINGH';
+  select distinct name from CUSTOMER, DEPOSITOR, ACCOUNT where CUSTOMER.cust_no = DEPOSITOR.cust_no AND DEPOSITOR.account_no = ACCOUNT.account_no AND ACCOUNT.type != 'SB';
+  /* != , <> are Not Equal operators */
 
-h) select B.branch_name, B.branch_city from BRANCH B, CUSTOMER C, DEPOSITOR D, ACCOUNT A where C.cust_no = D.cust_no AND D.account_no = A.account_no AND A.branch_code = B.branch_code AND C.name = 'ABHIJIT MISHRA';
+f) select type, sum(balance) from ACCOUNT natural join DEPOSITOR, CUSTOMER where DEPOSITOR.cust_no = CUSTOMER.cust_no and CUSTOMER.name = 'SWAROOP RAY' group by ACCOUNT.type; 
+ 
+  select ACCOUNT.type, sum(ACCOUNT.balance) from ACCOUNT, DEPOSITOR, CUSTOMER where DEPOSITOR.account_no = ACCOUNT.account_no AND DEPOSITOR.cust_no = CUSTOMER.cust_no AND CUSTOMER.name= 'SWAROOP RAY' group by ACCOUNT.type;
 
-i) 
+g) select inst_no, inst_amount from INSTALLMENT natural join LOAN, CUSTOMER where LOAN.cust_no = CUSTOMER.cust_no and CUSTOMER.name = 'RAJ ANAND SINGH'; 
+
+  select I.inst_no, I.inst_amount from CUSTOMER C, LOAN L, INSTALLMENT I where C.cust_no = L.cust_no AND L.loan_no = I.loan_no AND C.name = 'RAJ ANAND SINGH';
+
+h) select branch_name, branch_city from BRANCH natural join ACCOUNT, DEPOSITOR, CUSTOMER where ACCOUNT.account_no = DEPOSITOR.account_no and DEPOSITOR.cust_no = CUSTOMER.cust_no and CUSTOMER.name = 'ABHIJIT MISHRA'; 
+
+  select B.branch_name, B.branch_city from BRANCH B, CUSTOMER C, DEPOSITOR D, ACCOUNT A where C.cust_no = D.cust_no AND D.account_no = A.account_no AND A.branch_code = B.branch_code AND C.name = 'ABHIJIT MISHRA';
+
+i) select distinct C.name, B.branch_name, L.amount from CUSTOMER C natural join LOAN L, INSTALLMENT I, BRANCH B where L.branch_code = B.branch_code and L.loan_no not in (select loan_no from INSTALLMENT);
